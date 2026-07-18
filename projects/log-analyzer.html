@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анализатор логов (Blue Team) — проект Никиты</title>
+<meta name="description" content="Анализ SSH и веб access-логов на признаки brute-force, SQLi, XSS, сканирования — с реальной демонстрацией работы.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner container">
+    <a href="../index.html" class="logo">
+      <span class="logo-prompt">root@portfolio</span><span class="logo-colon">:~$</span>
+      <span class="cursor-blink">_</span>
+    </a>
+  </div>
+</header>
+
+<main>
+<section class="project-hero reveal">
+  <div class="container">
+    <a href="../index.html#projects" class="back-link">← ко всем проектам</a>
+    <div class="project-hero-top">
+      <span class="project-hero-icon">🧭</span>
+      <span class="project-status status-done">✅ Завершён</span>
+    </div>
+    <h1>Анализатор логов (Blue Team)</h1>
+    <p class="project-hero-desc">
+      Скрипт для анализа SSH auth-логов и веб access-логов (Apache/Nginx combined format):
+      находит brute-force атаки на SSH, SQL-инъекции, XSS, path traversal и автоматическое
+      сканирование директорий — и выдаёт отчёт с рекомендациями по каждой находке.
+    </p>
+    <div class="tag-row">
+      <span class="tag">Python 3</span><span class="tag">regex</span><span class="tag">Blue Team</span><span class="tag">SOC</span>
+    </div>
+    <div class="detail-cta">
+      <a href="https://github.com/BreakSmurf/log-analyzer" class="btn btn-primary" target="_blank" rel="noopener">Открыть на GitHub →</a>
+      <a href="#demo" class="btn btn-ghost">Смотреть демонстрацию</a>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="container">
+    <p class="section-tag">// как это устроено</p>
+    <h2 class="section-title">Логика работы</h2>
+    <ul class="how-it-works">
+      <li>Регулярки парсят стандартный формат строк <code>sshd</code> (<code>Failed password</code> / <code>Accepted password</code>) и Apache/Nginx combined log format.</li>
+      <li>Для SSH — считаются неудачные попытки на IP; если их ≥5, это находка; если после этого с того же IP был успешный вход — severity повышается до <code>high</code> (возможный компромисс).</li>
+      <li>Путь запроса в веб-логе декодируется (<code>urllib.parse.unquote</code>) и проверяется набором сигнатур: SQLi, XSS, path traversal — чтобы не пропустить обфусцированные (<code>%20</code>, <code>%3C</code>) попытки атак.</li>
+      <li>Если IP сделал ≥10 запросов и больше 60% из них — 404, это помечается как автоматическое сканирование директорий (dirbuster/gobuster-подобное поведение).</li>
+    </ul>
+  </div>
+</section>
+
+<section id="demo" class="section reveal">
+  <div class="container">
+    <p class="section-tag">// демонстрация</p>
+    <h2 class="section-title">Демонстрация работы</h2>
+    <p class="section-sub">
+      Запуск на встроенных тестовых логах (<code>sample_logs/</code>) — они синтетические,
+      специально собраны для демонстрации, а не взяты с реального сервера. Вывод скрипта настоящий.
+    </p>
+    <div class="terminal-card terminal-demo">
+      <div class="terminal-topbar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="terminal-title">powershell</span>
+      </div>
+      <div class="terminal-body">
+<pre>PS&gt; py analyzer.py --ssh-log sample_logs\auth.log.sample --access-log sample_logs\access.log.sample
+
+=== ОТЧЁТ ===
+
+[HIGH] ssh_bruteforce — IP 203.0.113.5
+    failed_attempts: 17
+    succeeded_after_bruteforce: True
+    recommendation: Похоже на успешный brute-force — немедленно сменить пароль/ключ...
+
+[HIGH] sql_injection_attempt — IP 203.0.113.7
+    path: /product.php?id=1%20UNION%20SELECT%20username,password%20FROM%20users--
+    status: 200
+
+[HIGH] xss_attempt — IP 203.0.113.7
+    path: /search.php?q=%3Cscript%3Ealert(1)%3C/script%3E
+
+[HIGH] path_traversal_attempt — IP 203.0.113.7
+    path: /download.php?file=../../../../etc/passwd
+
+[MEDIUM] directory_scanning — IP 192.0.2.99
+    requests_total: 11
+    not_found_count: 10</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="container">
+    <p class="section-tag">// дальше</p>
+    <h2 class="section-title">Roadmap проекта</h2>
+    <ul class="roadmap-list">
+      <li>Развернуть полноценную SIEM-лабораторию (ELK/Wazuh) для анализа в реальном времени</li>
+      <li>Геолокация IP через offline-базу (GeoLite2)</li>
+      <li>Правила для Fail2ban, генерируемые прямо из находок</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Никита — портфолио в разработке.</span>
+    <a href="../index.html#projects" class="footer-tag">← ко всем проектам</a>
+  </div>
+</footer>
+
+<script src="../js/project-page.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -532,6 +532,12 @@ pre{ font-family: var(--font-mono); margin: 0; white-space: pre-wrap; }
   border-color: var(--red-dim);
   box-shadow: 0 20px 50px rgba(255,23,68,0.10);
 }
+.project-card[data-href]{ cursor: pointer; }
+.project-card[data-href]:hover{
+  border-color: var(--red-bright);
+  box-shadow: 0 24px 60px rgba(255,23,68,0.18);
+}
+.project-card[data-href]:hover .project-link{ color: var(--red); }
 .project-status{
   align-self: flex-start;
   font-family: var(--font-mono);
@@ -709,4 +715,66 @@ pre{ font-family: var(--font-mono); margin: 0; white-space: pre-wrap; }
   .nav-links.open{ transform: translateY(0); }
   .burger{ display: flex; }
   .hero-stats{ gap: 30px; }
+}
+
+/* ===================== PROJECT DETAIL PAGE ===================== */
+.back-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-bottom: 28px;
+  transition: color var(--transition);
+}
+.back-link:hover{ color: var(--red-bright); }
+
+.project-hero{ padding: 150px 0 80px; }
+.project-hero-top{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.project-hero-icon{ font-size: 42px; }
+.project-hero h1{
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  margin: 0 0 18px;
+  font-weight: 800;
+}
+.project-hero-desc{
+  color: var(--text-dim);
+  max-width: 680px;
+  font-size: 1.05rem;
+  margin-bottom: 26px;
+}
+.project-hero .tag-row{ margin-bottom: 32px; }
+
+.how-it-works li{
+  color: var(--text-dim);
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 14.5px;
+}
+.how-it-works li:last-child{ border-bottom: none; }
+.how-it-works li::before{ content: "▹ "; color: var(--red-bright); }
+
+.terminal-demo .terminal-body{ min-height: 200px; }
+.terminal-demo pre{ font-size: 13px; line-height: 1.55; }
+.terminal-demo .cmd-line{ color: var(--green); }
+.terminal-demo .cmd-line::before{ content: "$ "; color: var(--text-faint); }
+
+.roadmap-list li{
+  color: var(--text-dim);
+  padding: 9px 0;
+  font-size: 14.5px;
+}
+.roadmap-list li::before{ content: "☐ "; color: var(--red-bright); }
+
+.detail-cta{
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 44px;
 }

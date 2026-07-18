@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CTF-крипточеллендж «Layers» — проект Никиты</title>
+<meta name="description" content="Самодельный CTF crypto-челлендж (XOR + Base64 + reverse) с генератором, солвером и write-up'ом — с реальной демонстрацией взлома.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner container">
+    <a href="../index.html" class="logo">
+      <span class="logo-prompt">root@portfolio</span><span class="logo-colon">:~$</span>
+      <span class="cursor-blink">_</span>
+    </a>
+  </div>
+</header>
+
+<main>
+<section class="project-hero reveal">
+  <div class="container">
+    <a href="../index.html#projects" class="back-link">← ко всем проектам</a>
+    <div class="project-hero-top">
+      <span class="project-hero-icon">🚩</span>
+      <span class="project-status status-done">✅ Завершён</span>
+    </div>
+    <h1>CTF-крипточеллендж «Layers» + write-up</h1>
+    <p class="project-hero-desc">
+      Самодельный крипто-челлендж в стиле CTF (категория Crypto, Easy): флаг зашифрован цепочкой
+      XOR → Base64 → reverse. Придуман и решён мной самостоятельно в учебных целях — не задача
+      с реального соревнования, но оформлен как настоящий CTF-таск: условие, зашифрованный флаг,
+      солвер и честный пошаговый write-up.
+    </p>
+    <div class="tag-row">
+      <span class="tag">Python 3</span><span class="tag">криптоанализ</span><span class="tag">XOR brute-force</span><span class="tag">write-up</span>
+    </div>
+    <div class="detail-cta">
+      <a href="https://github.com/BreakSmurf/ctf-crypto-challenge" class="btn btn-primary" target="_blank" rel="noopener">Открыть на GitHub →</a>
+      <a href="#demo" class="btn btn-ghost">Смотреть демонстрацию</a>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="container">
+    <p class="section-tag">// схема шифрования</p>
+    <h2 class="section-title">Как зашифрован флаг</h2>
+    <ul class="how-it-works">
+      <li>Флаг в формате <code>FLAG{...}</code> шифруется побайтово через <strong>XOR с однобайтовым ключом</strong> (ключ известен только автору).</li>
+      <li>Результат кодируется в <strong>Base64</strong>.</li>
+      <li>Получившаяся строка <strong>разворачивается задом наперёд</strong> — финальный шифротекст.</li>
+      <li>Решающему известна только схема (без значения ключа) и сам шифротекст.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="demo" class="section reveal">
+  <div class="container">
+    <p class="section-tag">// демонстрация</p>
+    <h2 class="section-title">Демонстрация: от шифротекста к флагу</h2>
+    <p class="section-sub">
+      Настоящий прогон генератора и солвера — методология разбора полностью описана в
+      <a href="https://github.com/BreakSmurf/ctf-crypto-challenge/blob/main/WRITEUP.md" target="_blank" rel="noopener">WRITEUP.md</a>.
+    </p>
+    <div class="terminal-card terminal-demo">
+      <div class="terminal-topbar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="terminal-title">powershell</span>
+      </div>
+      <div class="terminal-body">
+<pre>PS&gt; py generate_challenge.py
+[*] Флаг зашифрован, записан в challenge/output.txt
+challenge/output.txt:
+=IgBK5hGgwgTgwEHN8UGgwESK0QHg0wTHQAO+MTO
+
+PS&gt; py solve.py
+[+] Найден ключ: 0x7f
+[+] Флаг: FLAG{x0r_bru73_f0rc3_1s_ea5y}</pre>
+      </div>
+    </div>
+    <p class="section-sub" style="margin-top: 24px;">
+      Кратко методология: <code>=</code> в начале строки выдаёт разворот Base64 (паддинг должен
+      быть в конце) → после разворота строка декодируется как валидный Base64 → результат не
+      читается напрямую → перебор всех 256 однобайтовых XOR-ключей по известному префиксу
+      <code>FLAG{</code> (crib-dragging) находит верный ключ.
+    </p>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="container">
+    <p class="section-tag">// дальше</p>
+    <h2 class="section-title">Roadmap проекта</h2>
+    <ul class="roadmap-list">
+      <li>Челлендж посложнее: XOR с многобайтовым ключом (repeating-key XOR + частотный анализ)</li>
+      <li>Разбор реальных задач с публичных CTF-платформ (picoCTF и т.п.)</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Никита — портфолио в разработке.</span>
+    <a href="../index.html#projects" class="footer-tag">← ко всем проектам</a>
+  </div>
+</footer>
+
+<script src="../js/project-page.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -190,5 +190,13 @@ filterBtns.forEach(btn => {
   });
 });
 
+// ===================== CLICKABLE PROJECT CARDS =====================
+document.querySelectorAll('.project-card[data-href]').forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('a')) return; // не дублировать переход, если кликнули по самой ссылке
+    window.location.href = card.getAttribute('data-href');
+  });
+});
+
 // ===================== FOOTER YEAR =====================
 document.getElementById('year').textContent = new Date().getFullYear();
