@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Никита — Кибербезопасность | Портфолио</title>
+<meta name="description" content="Портфолио студента курса кибербезопасности: проекты, навыки, лабораторные работы.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+<div class="progress-bar" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="nav-inner container">
+    <a href="#home" class="logo">
+      <span class="logo-prompt">root@portfolio</span><span class="logo-colon">:~$</span>
+      <span class="cursor-blink">_</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="active">главная</a>
+      <a href="#about">обо мне</a>
+      <a href="#skills">навыки</a>
+      <a href="#projects">проекты</a>
+      <a href="#roadmap">roadmap</a>
+      <a href="#contact">контакты</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Открыть меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="home" class="hero">
+  <canvas id="matrix" class="matrix-canvas" aria-hidden="true"></canvas>
+  <div class="hero-vignette" aria-hidden="true"></div>
+  <div class="container hero-content">
+    <p class="hero-eyebrow">[ SEC+ STUDENT // BUILDING IN PUBLIC ]</p>
+    <h1 class="glitch" data-text="НИКИТА">НИКИТА</h1>
+    <h2 class="hero-role">
+      <span class="typed" id="typedText"></span><span class="type-cursor">|</span>
+    </h2>
+    <p class="hero-desc">
+      Изучаю кибербезопасность: пентест, сетевую защиту, анализ инцидентов и безопасную разработку.
+      Здесь — прогресс, лабораторные работы и проекты курса по мере их готовности.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">Смотреть проекты</a>
+      <a href="#contact" class="btn btn-ghost">Связаться</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" data-count="0">0</span><span class="stat-label">завершённых проектов</span></div>
+      <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-label">проектов в roadmap</span></div>
+      <div class="stat"><span class="stat-num" data-count="100">0</span><span class="stat-label">% мотивации</span></div>
+    </div>
+  </div>
+  <a href="#about" class="scroll-down" aria-label="Прокрутить вниз"><span></span></a>
+</section>
+
+<main>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="section reveal">
+  <div class="container">
+    <p class="section-tag">01 // о себе</p>
+    <h2 class="section-title">Обо мне</h2>
+    <div class="about-grid">
+      <div class="terminal-card">
+        <div class="terminal-topbar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="terminal-title">whoami.sh</span>
+        </div>
+        <div class="terminal-body">
+<pre><span class="prompt">$</span> whoami
+Никита
+<span class="prompt">$</span> cat status.txt
+Начинающий специалист по кибербезопасности
+Последовательно развиваюсь в этом направлении
+<span class="prompt">$</span> cat focus.txt
+- Сетевые технологии
+- Linux и Windows
+- Основы тестирования на проникновение
+- Веб-безопасность и анализ уязвимостей
+- Инструменты специалиста по ИБ
+<span class="prompt">$</span> echo $STATUS
+"практика, лабораторные, CTF, свои проекты"<span class="type-cursor">_</span></pre>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>
+          Я начинающий специалист в области кибербезопасности и последовательно развиваюсь в этом
+          направлении. Основной упор делаю на практику: изучаю современные методы защиты
+          информационных систем, выполняю лабораторные работы, решаю CTF-задачи и создаю собственные
+          проекты.
+        </p>
+        <p>
+          Сейчас изучаю сетевые технологии, операционные системы Linux и Windows, основы тестирования
+          на проникновение, веб-безопасность, анализ уязвимостей и работу с инструментами специалистов
+          по информационной безопасности. Раздел <a href="#projects">«Проекты»</a> будет регулярно
+          пополняться по мере получения практического опыта и завершения новых работ.
+        </p>
+        <div class="badge-row">
+          <span class="badge">🎓 В обучении</span>
+          <span class="badge">🛠️ Открыт к стажировкам</span>
+          <span class="badge">🔐 Blue Team интерес</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills" class="section reveal">
+  <div class="container">
+    <p class="section-tag">02 // навыки</p>
+    <h2 class="section-title">Навыки и инструменты</h2>
+    <p class="section-sub">Честная карта прогресса — без накрутки процентов.</p>
+
+    <div class="skills-columns">
+      <div class="skills-col">
+        <h3><span class="dot-status known"></span>Уже знаю</h3>
+        <ul class="skill-list">
+          <li>Основы сетей (TCP/IP, DNS, HTTP/S)</li>
+          <li>Linux / командная строка, Bash</li>
+          <li>Python — базовый уровень</li>
+          <li>Git / GitHub</li>
+        </ul>
+      </div>
+      <div class="skills-col">
+        <h3><span class="dot-status learning"></span>Изучаю сейчас</h3>
+        <ul class="skill-list">
+          <li>Nmap, Wireshark — анализ трафика</li>
+          <li>OWASP Top 10, Burp Suite</li>
+          <li>Основы криптографии</li>
+          <li>Linux hardening</li>
+        </ul>
+      </div>
+      <div class="skills-col">
+        <h3><span class="dot-status planned"></span>В планах</h3>
+        <ul class="skill-list">
+          <li>SIEM (ELK / Splunk) и анализ логов</li>
+          <li>Metasploit, реверс-инжиниринг основ</li>
+          <li>Active Directory security</li>
+          <li>Подготовка к CTF на постоянной основе</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool-chip">Nmap</div>
+      <div class="tool-chip">Wireshark</div>
+      <div class="tool-chip">Burp Suite</div>
+      <div class="tool-chip">Kali Linux</div>
+      <div class="tool-chip">Python</div>
+      <div class="tool-chip">Bash</div>
+      <div class="tool-chip">Git</div>
+      <div class="tool-chip">Docker</div>
+      <div class="tool-chip">OWASP ZAP</div>
+      <div class="tool-chip">Metasploit</div>
+      <div class="tool-chip">Wazuh / ELK</div>
+      <div class="tool-chip">VirtualBox</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects" class="section reveal">
+  <div class="container">
+    <p class="section-tag">03 // проекты</p>
+    <h2 class="section-title">Проекты</h2>
+    <p class="section-sub">
+      Реальных проектов пока нет — они появятся по мере прохождения курса. Ниже — roadmap с темами,
+      которые будут раскрыты в отдельные работы (код, отчёт, разбор). Статусы обновляются честно.
+    </p>
+
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-filter="all">Все</button>
+      <button class="filter-btn" data-filter="net">Сети</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+      <button class="filter-btn" data-filter="osint">OSINT</button>
+      <button class="filter-btn" data-filter="script">Скрипты</button>
+      <button class="filter-btn" data-filter="soc">SOC / Blue Team</button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+      <article class="project-card" data-cat="net script" data-status="planned">
+        <div class="project-status status-planned">🔜 В планах</div>
+        <div class="project-icon">🌐</div>
+        <h3>Сканер портов и сервисов на Python</h3>
+        <p>Собственная реализация TCP-сканера с определением баннеров сервисов и экспортом отчёта в
+          JSON/CSV — учебный аналог nmap для понимания протокола изнутри.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">sockets</span><span class="tag">CLI</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link disabled" title="Появится после публикации">Код на GitHub →</a>
+        </div>
+      </article>
+
+      <article class="project-card" data-cat="web" data-status="planned">
+        <div class="project-status status-planned">🔜 В планах</div>
+        <div class="project-icon">🕷️</div>
+        <h3>Пентест учебного веб-приложения (OWASP Juice Shop)</h3>
+        <p>Разбор уязвимостей из OWASP Top 10 на тренировочном стенде: SQLi, XSS, broken auth — с
+          пошаговым отчётом и рекомендациями по исправлению.</p>
+        <div class="tag-row">
+          <span class="tag">Burp Suite</span><span class="tag">OWASP Top 10</span><span class="tag">отчёт</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link disabled" title="Появится после публикации">Отчёт →</a>
+        </div>
+      </article>
+
+      <article class="project-card" data-cat="osint" data-status="planned">
+        <div class="project-status status-planned">🔜 В планах</div>
+        <div class="project-icon">🔎</div>
+        <h3>OSINT-разведка учебной цели</h3>
+        <p>Сбор публичной информации об учебном домене/компании в этичных рамках: поддомены, утечки,
+          цифровой след — с оформлением в виде разведывательного отчёта.</p>
+        <div class="tag-row">
+          <span class="tag">OSINT</span><span class="tag">recon</span><span class="tag">theHarvester</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link disabled" title="Появится после публикации">Отчёт →</a>
+        </div>
+      </article>
+
+      <article class="project-card" data-cat="soc" data-status="planned">
+        <div class="project-status status-planned">🔜 В планах</div>
+        <div class="project-icon">🧭</div>
+        <h3>Домашняя SOC-лаборатория (ELK + Wazuh)</h3>
+        <p>Развёртывание мини-SOC на виртуальных машинах: сбор логов, детекты подозрительной активности,
+          дашборды для мониторинга инцидентов в реальном времени.</p>
+        <div class="tag-row">
+          <span class="tag">Wazuh</span><span class="tag">ELK</span><span class="tag">Docker</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link disabled" title="Появится после публикации">Репозиторий →</a>
+        </div>
+      </article>
+
+      <article class="project-card" data-cat="net" data-status="planned">
+        <div class="project-status status-planned">🔜 В планах</div>
+        <div class="project-icon">📡</div>
+        <h3>Аудит безопасности домашней сети</h3>
+        <p>Полный аудит своей сети: карта устройств, открытые порты, настройки Wi-Fi/роутера,
+          сегментация и рекомендации по укреплению (hardening).</p>
+        <div class="tag-row">
+          <span class="tag">Nmap</span><span class="tag">Wireshark</span><span class="tag">hardening</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link disabled" title="Появится после публикации">Отчёт →</a>
+        </div>
+      </article>
+
+      <article class="project-card" data-cat="web script" data-status="planned">
+        <div class="project-status status-planned">🔜 В планах</div>
+        <div class="project-icon">🚩</div>
+        <h3>CTF Write-ups</h3>
+        <p>Разборы решённых задач с CTF-площадок (web, crypto, forensics) — пошаговая методология,
+          использованные инструменты и итоговый флаг.</p>
+        <div class="tag-row">
+          <span class="tag">CTF</span><span class="tag">writeup</span><span class="tag">crypto</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link disabled" title="Появится после публикации">Write-up →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== ROADMAP ===== -->
+<section id="roadmap" class="section reveal">
+  <div class="container">
+    <p class="section-tag">04 // прогресс</p>
+    <h2 class="section-title">Roadmap курса</h2>
+    <p class="section-sub">Прозрачный трекер того, на каком этапе я нахожусь сейчас.</p>
+
+    <div class="timeline">
+      <div class="timeline-item done">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-status">Пройдено</span>
+          <h3>Основы информационной безопасности</h3>
+          <p>Терминология, модели угроз, CIA-триада, базовая гигиена безопасности.</p>
+        </div>
+      </div>
+      <div class="timeline-item active">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-status">В процессе</span>
+          <h3>Сети и протоколы</h3>
+          <p>TCP/IP, анализ трафика в Wireshark, сканирование сетей с Nmap.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-status">Далее</span>
+          <h3>Пентест веб-приложений</h3>
+          <p>OWASP Top 10, Burp Suite, практика на учебных стендах.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-status">Далее</span>
+          <h3>Мониторинг и реагирование (Blue Team)</h3>
+          <p>SIEM, анализ логов, обнаружение и разбор инцидентов.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-status">Цель</span>
+          <h3>Стажировка / первая позиция в ИБ</h3>
+          <p>Применение накопленного портфолио на практике.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="section reveal">
+  <div class="container">
+    <p class="section-tag">05 // связь</p>
+    <h2 class="section-title">Контакты</h2>
+    <p class="section-sub">Открыт к стажировкам, менторству и совместным CTF.</p>
+
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:nkashmatov@gmail.com">
+        <span class="contact-icon">✉️</span>
+        <span class="contact-label">Email</span>
+        <span class="contact-value">nkashmatov@gmail.com</span>
+      </a>
+      <a class="contact-card" href="telegram.html">
+        <span class="contact-icon">💬</span>
+        <span class="contact-label">Telegram</span>
+        <span class="contact-value">@RUNARCHIK — скан QR →</span>
+      </a>
+      <a class="contact-card" href="https://github.com/BreakSmurf" target="_blank" rel="noopener">
+        <span class="contact-icon">💻</span>
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">github.com/BreakSmurf</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Кашматов Н. — портфолио в разработке.</span>
+    <span class="footer-tag">built with 🖤 &amp; caffeine</span>
+  </div>
+</footer>
+
+<button id="backToTop" class="back-to-top" aria-label="Наверх">↑</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telegram — Никита</title>
+<meta name="description" content="Отсканируй QR-код, чтобы написать в Telegram.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .qr-page{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 24px 60px;
+  }
+  .qr-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 44px;
+    text-align: center;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+  }
+  .qr-card img{
+    width: 240px;
+    height: 240px;
+    margin: 0 auto 24px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 12px;
+  }
+  .qr-handle{
+    font-family: var(--font-mono);
+    color: var(--red-bright);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .qr-back{
+    display: inline-block;
+    margin-top: 22px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-faint);
+  }
+  .qr-back:hover{ color: var(--red-bright); }
+</style>
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+
+<header class="nav scrolled">
+  <div class="nav-inner container">
+    <a href="index.html" class="logo">
+      <span class="logo-prompt">root@portfolio</span><span class="logo-colon">:~$</span>
+      <span class="cursor-blink">_</span>
+    </a>
+  </div>
+</header>
+
+<main class="qr-page">
+  <div class="qr-card">
+    <p class="section-tag" style="margin-bottom: 6px;">// telegram</p>
+    <h1 class="qr-handle">@RUNARCHIK</h1>
+    <p class="section-sub" style="margin: 0 auto 24px; max-width: 320px;">
+      Отсканируй QR-код камерой телефона или нажми кнопку ниже, чтобы написать мне в Telegram.
+    </p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&color=255-23-68&bgcolor=255-255-255&data=https://t.me/RUNARCHIK" alt="QR-код на Telegram @RUNARCHIK" loading="lazy">
+    <a href="https://t.me/RUNARCHIK" class="btn btn-primary" target="_blank" rel="noopener">Открыть Telegram</a>
+    <br>
+    <a href="index.html" class="qr-back">← вернуться в портфолио</a>
+  </div>
+</main>
+
+</body>
+</html>
