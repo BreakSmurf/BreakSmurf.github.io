@@ -56,8 +56,8 @@
       <a href="#contact" class="btn btn-ghost">Связаться</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><span class="stat-num" data-count="0">0</span><span class="stat-label">завершённых проектов</span></div>
-      <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-label">проектов в roadmap</span></div>
+      <div class="stat"><span class="stat-num" data-count="4">0</span><span class="stat-label">завершённых проектов</span></div>
+      <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label">в планах</span></div>
       <div class="stat"><span class="stat-num" data-count="100">0</span><span class="stat-label">% мотивации</span></div>
     </div>
   </div>
@@ -191,8 +191,8 @@
 
     <div class="projects-grid" id="projectsGrid">
 
-      <article class="project-card" data-cat="net script" data-status="planned">
-        <div class="project-status status-planned">🔜 В планах</div>
+      <article class="project-card" data-cat="net script" data-status="done">
+        <div class="project-status status-done">✅ Завершён</div>
         <div class="project-icon">🌐</div>
         <h3>Сканер портов и сервисов на Python</h3>
         <p>Собственная реализация TCP-сканера с определением баннеров сервисов и экспортом отчёта в
@@ -201,7 +201,7 @@
           <span class="tag">Python</span><span class="tag">sockets</span><span class="tag">CLI</span>
         </div>
         <div class="project-links">
-          <a href="#" class="project-link disabled" title="Появится после публикации">Код на GitHub →</a>
+          <a href="https://github.com/BreakSmurf/port-scanner" class="project-link" target="_blank" rel="noopener">Код на GitHub →</a>
         </div>
       </article>
 
@@ -219,31 +219,31 @@
         </div>
       </article>
 
-      <article class="project-card" data-cat="osint" data-status="planned">
-        <div class="project-status status-planned">🔜 В планах</div>
+      <article class="project-card" data-cat="osint" data-status="done">
+        <div class="project-status status-done">✅ Завершён</div>
         <div class="project-icon">🔎</div>
-        <h3>OSINT-разведка учебной цели</h3>
-        <p>Сбор публичной информации об учебном домене/компании в этичных рамках: поддомены, утечки,
-          цифровой след — с оформлением в виде разведывательного отчёта.</p>
+        <h3>OSINT-разведка домена</h3>
+        <p>Пассивная разведка по публичным источникам: собственный WHOIS-клиент по сокетам, DNS-записи
+          и поиск поддоменов через логи Certificate Transparency (crt.sh).</p>
         <div class="tag-row">
-          <span class="tag">OSINT</span><span class="tag">recon</span><span class="tag">theHarvester</span>
+          <span class="tag">OSINT</span><span class="tag">WHOIS</span><span class="tag">DNS</span><span class="tag">crt.sh</span>
         </div>
         <div class="project-links">
-          <a href="#" class="project-link disabled" title="Появится после публикации">Отчёт →</a>
+          <a href="https://github.com/BreakSmurf/osint-domain-recon" class="project-link" target="_blank" rel="noopener">Код на GitHub →</a>
         </div>
       </article>
 
-      <article class="project-card" data-cat="soc" data-status="planned">
-        <div class="project-status status-planned">🔜 В планах</div>
+      <article class="project-card" data-cat="soc" data-status="done">
+        <div class="project-status status-done">✅ Завершён</div>
         <div class="project-icon">🧭</div>
-        <h3>Домашняя SOC-лаборатория (ELK + Wazuh)</h3>
-        <p>Развёртывание мини-SOC на виртуальных машинах: сбор логов, детекты подозрительной активности,
-          дашборды для мониторинга инцидентов в реальном времени.</p>
+        <h3>Анализатор логов (Blue Team)</h3>
+        <p>Скрипт для анализа SSH auth-логов и веб access-логов: находит brute-force, SQL-инъекции, XSS,
+          path traversal и сканирование директорий, выдаёт отчёт с рекомендациями.</p>
         <div class="tag-row">
-          <span class="tag">Wazuh</span><span class="tag">ELK</span><span class="tag">Docker</span>
+          <span class="tag">Python</span><span class="tag">regex</span><span class="tag">Blue Team</span>
         </div>
         <div class="project-links">
-          <a href="#" class="project-link disabled" title="Появится после публикации">Репозиторий →</a>
+          <a href="https://github.com/BreakSmurf/log-analyzer" class="project-link" target="_blank" rel="noopener">Код на GitHub →</a>
         </div>
       </article>
 
@@ -261,17 +261,17 @@
         </div>
       </article>
 
-      <article class="project-card" data-cat="web script" data-status="planned">
-        <div class="project-status status-planned">🔜 В планах</div>
+      <article class="project-card" data-cat="web script" data-status="done">
+        <div class="project-status status-done">✅ Завершён</div>
         <div class="project-icon">🚩</div>
-        <h3>CTF Write-ups</h3>
-        <p>Разборы решённых задач с CTF-площадок (web, crypto, forensics) — пошаговая методология,
-          использованные инструменты и итоговый флаг.</p>
+        <h3>CTF-крипточеллендж «Layers» + write-up</h3>
+        <p>Самодельная крипто-задача (XOR + Base64 + reverse) с генератором, солвером и честным
+          пошаговым write-up'ом методологии взлома однобайтового XOR по известному префиксу флага.</p>
         <div class="tag-row">
-          <span class="tag">CTF</span><span class="tag">writeup</span><span class="tag">crypto</span>
+          <span class="tag">CTF</span><span class="tag">crypto</span><span class="tag">write-up</span>
         </div>
         <div class="project-links">
-          <a href="#" class="project-link disabled" title="Появится после публикации">Write-up →</a>
+          <a href="https://github.com/BreakSmurf/ctf-crypto-challenge" class="project-link" target="_blank" rel="noopener">Код на GitHub →</a>
         </div>
       </article>
 
